@@ -147,41 +147,54 @@ namespace omerWCF.App_Code
         }
         public static PlayrsClass[] PrintPlayersList()
         {
-            Connection myConn = new Connection();
-            myConn = new Connection();
-            myConn.OpenConnection();
-            string sql = "select * from sahkanim INNER JOIN human_source ON sahkanim.playerNumber = human_source.key";
-            DataRow[] playertList = ((DataTable)myConn.ShowDataInGridView(sql)).Select();
-            PlayrsClass[] res = new PlayrsClass[playertList.Length];
-            for (int i = 0; i < playertList.Length; i++)
+            try
             {
-                res[i] = new PlayrsClass(playertList[i]);
+                Connection connUtility = new Connection(); // Instance to access ShowDataInGridView
+                string sql = "select * from sahkanim INNER JOIN human_source ON sahkanim.playerNumber = human_source.key";
+                // ShowDataInGridView handles its own connection using the ConnectionString
+                DataRow[] playertList = ((DataTable)connUtility.ShowDataInGridView(sql)).Select();
+                PlayrsClass[] res = new PlayrsClass[playertList.Length];
+                for (int i = 0; i < playertList.Length; i++)
+                {
+                    res[i] = new PlayrsClass(playertList[i]);
+                }
+                return res;
             }
-            return res;
-            
-            
+            catch (Exception ex)
+            {
+                // Consider logging the exception or wrapping it in a custom exception
+                // For now, re-throwing as no specific error handling policy is defined for this method
+                throw;
+            }
         }
         public int DeletePlayer()
         {
             Connection MyConn = new Connection();
-            try { 
-                base.
+            try {
+                try { base.DeleteHuman(); } catch { /* Log or handle as desired */ }
                 MyConn.OpenConnection();
                 OleDbCommand cmd = MyConn.Command("DELETE FROM sahkanim WHERE playerNumber = @playerNumber");
                 cmd.Parameters.AddWithValue("@playerNumber", this.key);
-                cmd.ExecuteNonQuery();
-                MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
             }
             catch
             {
-                return 2;
+                return 2; // General error
             }
             finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
         }
         public override void Select()
         {
@@ -252,16 +265,24 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@TO", this.TO);
                 cmd.Parameters.AddWithValue("@PlayedINLeagues", this.PlayedINLeagues);
                 cmd.Parameters.AddWithValue("@trainerID", this.trainerID);
-                cmd.ExecuteNonQuery();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
              }catch{
-                return 2;
+                return 2; // General error
             }
             finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
         }
         public static PlayrsClass[] GetWeakPlayers()
         {

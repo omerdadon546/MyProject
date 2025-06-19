@@ -57,19 +57,26 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@TrainingLevel", this.TrainingLevel);
                 cmd.Parameters.AddWithValue("@TrainingHouer", this.TrainingHouer);
                 cmd.Parameters.AddWithValue("@trainerID", this.trainerID);
-                cmd.ExecuteNonQuery();
-                MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
             }
             catch
             {
-                return 2;
+                return 2; // General error
             }
             finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
         }
         public int DeleteTraining()
         {
@@ -78,19 +85,26 @@ namespace omerWCF.App_Code
                 MyConn.OpenConnection();
                 OleDbCommand cmd = MyConn.Command("DELETE FROM training WHERE workoutDay = @workoutDay");
                 cmd.Parameters.AddWithValue("@workoutDay", this.workoutDay);
-                cmd.ExecuteNonQuery();
-                MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
             }
             catch
             {
-                return 2;
+                return 2; // General error
             }
             finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
         }
         public void SelectTraining()
         {
@@ -127,27 +141,23 @@ namespace omerWCF.App_Code
         {
             try
             {
-                Connection myConn = new Connection();
-                myConn.OpenConnection();
+                Connection connUtility = new Connection(); // Instance to access ShowDataInGridView
                 string sql = "select * from training";
-                DataRow[] TrainingList = ((DataTable)myConn.ShowDataInGridView(sql)).Select();
+                // ShowDataInGridView handles its own connection using the ConnectionString
+                DataRow[] TrainingList = ((DataTable)connUtility.ShowDataInGridView(sql)).Select();
                 TrainingClass[] res = new TrainingClass[TrainingList.Length];
                 for (int i = 0; i < TrainingList.Length; i++)
                 {
                     res[i] = new TrainingClass(TrainingList[i]);
                 }
                 return res;
-
             }
             catch (Exception ex)
             {
-                throw ex;
-
+                // Consider logging the exception or wrapping it in a custom exception
+                throw ex; // Preserving existing behavior
             }
-            finally
-            {
-
-            }
+            // No finally block needed here for connUtility if it didn't open a persistent connection.
         }
         public int UpdateTraining()
         {
@@ -161,19 +171,26 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@TrainingLevel", this.TrainingLevel);
                 cmd.Parameters.AddWithValue("@TrainingHouer", this.TrainingHouer);
                 cmd.Parameters.AddWithValue("@trainerID", this.trainerID);
-                cmd.ExecuteNonQuery();
-                MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
             }
             catch
             {
-                return 2;
+                return 2; // General error
             }
             finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
         }
     }
 }

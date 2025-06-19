@@ -65,8 +65,17 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@PTSatLeague", this.PTSatLeague);
                 cmd.Parameters.AddWithValue("@coachName", this.CoachName);
                 cmd.Parameters.AddWithValue("@LeagueLevel", this.LeagueLevel);
-                cmd.ExecuteNonQuery();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected / logical error
+                }
             }
             catch
             {
@@ -76,7 +85,6 @@ namespace omerWCF.App_Code
             {
                 MyConn.CloseConnection();
             }
-            return 0;
         }
         public int DeleteLeague()
         {
@@ -86,9 +94,18 @@ namespace omerWCF.App_Code
                 MyConn.OpenConnection();
                 OleDbCommand cmd = MyConn.Command("DELETE FROM leagues WHERE leagueName = @leagueName");
                 cmd.Parameters.AddWithValue("@leagueName", this.LeagueName);
-                cmd.ExecuteNonQuery();
-                MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                // MyConn.CloseConnection(); // Already called in finally, explicit close before return is good.
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected / logical error
+                }
             }
             catch
             {
@@ -98,7 +115,6 @@ namespace omerWCF.App_Code
             {
                 MyConn.CloseConnection();
             }
-            return 0;
         }
         public void SelectLeague()
         {
@@ -145,9 +161,17 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@PTSatLeague", this.PTSatLeague);
                 cmd.Parameters.AddWithValue("@CoachName", this.CoachName);
                 cmd.Parameters.AddWithValue("@LeagueLevel", this.LeagueLevel);
-                cmd.ExecuteNonQuery();
-                MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected / logical error
+                }
             }
             catch
             {
@@ -157,55 +181,69 @@ namespace omerWCF.App_Code
             {
                 MyConn.CloseConnection();
             }
-            return 0;
         }
         public static LeaguesClass[] PrintLeaguesList()
         {
             try
             {
-                Connection myConn = new Connection();
-                myConn.OpenConnection();
+                Connection connUtility = new Connection(); // Instance to call method
                 string sql = "select * from leagues";
-                DataRow[] TrainingList = ((DataTable)myConn.ShowDataInGridView(sql)).Select();
+                // ShowDataInGridView handles its own connection using the ConnectionString
+                DataRow[] TrainingList = ((DataTable)connUtility.ShowDataInGridView(sql)).Select();
                 LeaguesClass[] res = new LeaguesClass[TrainingList.Length];
                 for (int i = 0; i < TrainingList.Length; i++)
                 {
                     res[i] = new LeaguesClass(TrainingList[i]);
                 }
                 return res;
-
             }
             catch (Exception ex)
             {
-                throw ex;
-
-            }
-            finally
-            {
-
+                // Consider logging the exception or wrapping it in a custom exception
+                throw ex; // Preserving existing behavior
             }
         }
         public static List<LeaguesClass> GetLeaguesChartData()
         {
-            List<LeaguesClass> scores = new List<LeaguesClass>();
-            Connection con = new Connection();
-            con.OpenConnection();
-
-            OleDbCommand cmd = con.Command("select * from leagues");
-            OleDbDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            List<LeaguesClass> scores = null;
+            Connection con = null;
+            OleDbDataReader reader = null;
+            try
             {
-                scores.Add(new LeaguesClass
-                {
-                    leagueName = reader["leagueName"].ToString(),
-                    LeagueLevel = (int)(reader["LeagueLevel"])
-                });
-            }
+                con = new Connection();
+                con.OpenConnection();
 
-            reader.Close();
-            con.CloseConnection();
-            return scores;
+                OleDbCommand cmd = con.Command("select * from leagues");
+                reader = cmd.ExecuteReader();
+                scores = new List<LeaguesClass>(); // Initialize inside try
+
+                while (reader.Read())
+                {
+                    scores.Add(new LeaguesClass
+                    {
+                        leagueName = reader["leagueName"].ToString(),
+                        LeagueLevel = (int)(reader["LeagueLevel"])
+                    });
+                }
+                return scores;
+            }
+            catch (Exception ex)
+            {
+                // Consider logging the exception or re-throwing if appropriate
+                // For now, re-throwing to maintain consistency if no specific error handling is defined
+                throw;
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                {
+                    reader.Close();
+                }
+                if (con != null) // Assuming con.CloseConnection can handle if OpenConnection failed or already closed
+                {
+                    con.CloseConnection();
+                }
+            }
         }
     }
 }
