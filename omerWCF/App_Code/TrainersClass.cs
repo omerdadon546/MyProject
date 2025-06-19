@@ -61,18 +61,26 @@ namespace omerWCF.App_Code
                 OleDbCommand cmd = MyConn.Command("insert into Trainers (trainerID,firstName,lastName,trainingLevel,startWorking)Values(@trainerID, @firstName, @lastName, @trainingLevel,@startWorking)");
                 cmd.Parameters.AddWithValue("@trainerID", this.key);
                 cmd.Parameters.AddWithValue("@startWorking", this.startWorking);
-                cmd.ExecuteNonQuery();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
             }
             catch
             {
-                return 2;
+                return 2; // General error
             }
             finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
         }
         public int DeleteTrainer()
         {
@@ -81,19 +89,26 @@ namespace omerWCF.App_Code
                 MyConn.OpenConnection();
                 OleDbCommand cmd = MyConn.Command("DELETE FROM trainers WHERE trainerID = @trainerID");
                 cmd.Parameters.AddWithValue("@trainerID", this.Id);
-                cmd.ExecuteNonQuery();
-                MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Single call
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
             }
             catch
             {
-                return 2;
+                return 2; // General error
             }
             finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
         }
         public void SelectTrainer()
         {
@@ -150,28 +165,45 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@lastName", this.lastName);
                 cmd.Parameters.AddWithValue("@trainingLevel", this.level);
                 cmd.Parameters.AddWithValue("@startWorking", this.StartWorking);
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                int rowsAffected = cmd.ExecuteNonQuery(); // Execute query unconditionally first
+                if (rowsAffected > 0)
+                {
+                    MyConn.CloseConnection(); // Close before successful return
+                    return 0; // Success
+                }
+                else
+                {
+                    MyConn.CloseConnection(); // Close before "logical error" return
+                    return 1; // No rows affected
+                }
             } catch {
-                return 2;
+                return 2; // General error
             } finally
             {
-                MyConn.CloseConnection();
+                MyConn.CloseConnection(); // Ensure connection is closed
             }
-            return 0;
-
         }
         public static TrainersClass[] PrintTrainersList()
         {
-                Connection myConn = new Connection();
-                myConn.OpenConnection();
+            try
+            {
+                Connection connUtility = new Connection(); // Instance to access ShowDataInGridView
                 string sql = "select * from trainers INNER JOIN human_source ON Trainers.trainerID = human_source.key";
-                DataRow[] TrainingList = ((DataTable)myConn.ShowDataInGridView(sql)).Select();
+                // ShowDataInGridView handles its own connection using the ConnectionString
+                DataRow[] TrainingList = ((DataTable)connUtility.ShowDataInGridView(sql)).Select();
                 TrainersClass[] res = new TrainersClass[TrainingList.Length];
                 for (int i = 0; i < TrainingList.Length; i++)
                 {
                     res[i] = new TrainersClass(TrainingList[i]);
                 }
                 return res;
+            }
+            catch (Exception ex)
+            {
+                // Consider logging the exception or wrapping it in a custom exception
+                // For now, re-throwing as no specific error handling policy is defined for this method
+                throw;
+            }
         }
         public static TrainersClass[] GetTrainersSalaryBySeniority()
         {

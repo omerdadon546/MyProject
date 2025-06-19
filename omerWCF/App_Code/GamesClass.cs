@@ -88,9 +88,16 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@game_level", this.game_level);
 
                 // Execute the insert command
-                cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
                 MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                if (rowsAffected > 0)
+                {
+                    return 0; // Success
+                }
+                else
+                {
+                    return 1; // No rows affected / logical error
+                }
             }
             catch
             {
@@ -100,7 +107,6 @@ namespace omerWCF.App_Code
             {
                 MyConn.CloseConnection();
             }
-            return 0;
         }
         public int DeleteGame()
         {
@@ -109,9 +115,16 @@ namespace omerWCF.App_Code
                 MyConn.OpenConnection();
                 OleDbCommand cmd = MyConn.Command("DELETE FROM games WHERE game_number = @game_number");
                 cmd.Parameters.AddWithValue("@game_number", this.GameNUmver);
-                cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
                 MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                if (rowsAffected > 0)
+                {
+                    return 0; // Success
+                }
+                else
+                {
+                    return 1; // No rows affected / logical error
+                }
             }
             catch
             {
@@ -121,7 +134,6 @@ namespace omerWCF.App_Code
             {
                 MyConn.CloseConnection();
             }
-            return 0;
         }
 
         public void SelectGame()
@@ -170,9 +182,16 @@ namespace omerWCF.App_Code
                 cmd.Parameters.AddWithValue("@playersPlayed", this.PlayersPlayed);
                 cmd.Parameters.AddWithValue("@Victory", this.Victory1);
                 cmd.Parameters.AddWithValue("@game_level", this.Game_level);
-                cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
                 MyConn.CloseConnection();
-                if (cmd.ExecuteNonQuery() == 0) return 1;
+                if (rowsAffected > 0)
+                {
+                    return 0; // Success
+                }
+                else
+                {
+                    return 1; // No rows affected / logical error
+                }
             }
             catch
             {
@@ -182,33 +201,27 @@ namespace omerWCF.App_Code
             {
                 MyConn.CloseConnection();
             }
-            return 0;
         }
 
         public static GamesClass[] PrintGamesList()
         {
             try
             {
-                Connection myConn = new Connection();
-                myConn.OpenConnection();
+                Connection connUtility = new Connection(); // Instance to access ShowDataInGridView
                 string sql = "select * from games";
-                DataRow[] gamestList = ((DataTable)myConn.ShowDataInGridView(sql)).Select();
+                // ShowDataInGridView handles its own connection using the ConnectionString
+                DataRow[] gamestList = ((DataTable)connUtility.ShowDataInGridView(sql)).Select();
                 GamesClass[] res = new GamesClass[gamestList.Length];
-                for(int i = 0; i < gamestList.Length; i++)
+                for (int i = 0; i < gamestList.Length; i++)
                 {
                     res[i] = new GamesClass(gamestList[i]);
                 }
                 return res;
-
             }
             catch (Exception ex)
             {
-                throw ex;
-
-            }
-            finally
-            {
-
+                // Consider logging the exception or wrapping it in a custom exception
+                throw ex; // Preserving existing behavior
             }
         }
         public static int CountWins()
