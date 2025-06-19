@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/omerWCF.App_Code" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_AddGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddGame" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintGamesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintGamesList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintGamesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintGamesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintPlayersList_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintPlayersList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintPlayersList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintPlayersListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTrainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTrainer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTrainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTrainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteTrainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTrainer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteTrainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTrainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectTrainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTrainer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectTrainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTrainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateTrainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTrainer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateTrainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTrainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintTrainersLinst_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintTrainersLinst" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintTrainersLinst_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintTrainersLinstResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTraining_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraining" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTraining_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteTraining_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTraining" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteTraining_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectTraining_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTraining" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectTraining_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintTraningList_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintTraningList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintTraningList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintTraningListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddLeague_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLeague" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddLeague_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteLeague_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLeague" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteLeague_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectLeague_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLeague" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectLeague_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintLeaguesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintLeaguesList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PrintLeaguesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintLeaguesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateLeague_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLeague" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateLeague_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeletePlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlayer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeletePlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdatePlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdatePlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGame" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGame" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectGame" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateTraining_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTraining" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateTraining_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_signUp_InputMessage">
+    <wsdl:part name="parameters" element="tns:signUp" />
+  </wsdl:message>
+  <wsdl:message name="IService1_signUp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:signUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_login_InputMessage">
+    <wsdl:part name="parameters" element="tns:login" />
+  </wsdl:message>
+  <wsdl:message name="IService1_login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainersSalaryBySeniority_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainersSalaryBySeniority" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainersSalaryBySeniority_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainersSalaryBySeniorityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLeaguesChartData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaguesChartData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLeaguesChartData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaguesChartDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetWeakPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWeakPlayers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetWeakPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWeakPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetWinCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWinCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetWinCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWinCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLossCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLossCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLossCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLossCountResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="AddGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddGame" message="tns:IService1_AddGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddGameResponse" message="tns:IService1_AddGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintGamesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PrintGamesList" message="tns:IService1_PrintGamesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PrintGamesListResponse" message="tns:IService1_PrintGamesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintPlayersList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PrintPlayersList" message="tns:IService1_PrintPlayersList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PrintPlayersListResponse" message="tns:IService1_PrintPlayersList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTrainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTrainer" message="tns:IService1_AddTrainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTrainerResponse" message="tns:IService1_AddTrainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteTrainer" message="tns:IService1_DeleteTrainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteTrainerResponse" message="tns:IService1_DeleteTrainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectTrainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectTrainer" message="tns:IService1_SelectTrainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectTrainerResponse" message="tns:IService1_SelectTrainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateTrainer" message="tns:IService1_UpdateTrainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateTrainerResponse" message="tns:IService1_UpdateTrainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintTrainersLinst">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PrintTrainersLinst" message="tns:IService1_PrintTrainersLinst_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PrintTrainersLinstResponse" message="tns:IService1_PrintTrainersLinst_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTraining">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTraining" message="tns:IService1_AddTraining_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTrainingResponse" message="tns:IService1_AddTraining_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTraining">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteTraining" message="tns:IService1_DeleteTraining_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteTrainingResponse" message="tns:IService1_DeleteTraining_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectTraining">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectTraining" message="tns:IService1_SelectTraining_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectTrainingResponse" message="tns:IService1_SelectTraining_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintTraningList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PrintTraningList" message="tns:IService1_PrintTraningList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PrintTraningListResponse" message="tns:IService1_PrintTraningList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLeague">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddLeague" message="tns:IService1_AddLeague_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddLeagueResponse" message="tns:IService1_AddLeague_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLeague">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteLeague" message="tns:IService1_DeleteLeague_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteLeagueResponse" message="tns:IService1_DeleteLeague_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectLeague">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectLeague" message="tns:IService1_SelectLeague_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectLeagueResponse" message="tns:IService1_SelectLeague_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintLeaguesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PrintLeaguesList" message="tns:IService1_PrintLeaguesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PrintLeaguesListResponse" message="tns:IService1_PrintLeaguesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLeague">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateLeague" message="tns:IService1_UpdateLeague_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateLeagueResponse" message="tns:IService1_UpdateLeague_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddPlayer" message="tns:IService1_AddPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddPlayerResponse" message="tns:IService1_AddPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeletePlayer" message="tns:IService1_DeletePlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeletePlayerResponse" message="tns:IService1_DeletePlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdatePlayer" message="tns:IService1_UpdatePlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdatePlayerResponse" message="tns:IService1_UpdatePlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectPlayer" message="tns:IService1_SelectPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectPlayerResponse" message="tns:IService1_SelectPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteGame" message="tns:IService1_DeleteGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteGameResponse" message="tns:IService1_DeleteGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateGame" message="tns:IService1_UpdateGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateGameResponse" message="tns:IService1_UpdateGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectGame" message="tns:IService1_SelectGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectGameResponse" message="tns:IService1_SelectGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTraining">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateTraining" message="tns:IService1_UpdateTraining_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateTrainingResponse" message="tns:IService1_UpdateTraining_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="signUp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/signUp" message="tns:IService1_signUp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/signUpResponse" message="tns:IService1_signUp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/login" message="tns:IService1_login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/loginResponse" message="tns:IService1_login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainersSalaryBySeniority">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainersSalaryBySeniority" message="tns:IService1_GetTrainersSalaryBySeniority_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTrainersSalaryBySeniorityResponse" message="tns:IService1_GetTrainersSalaryBySeniority_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguesChartData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetLeaguesChartData" message="tns:IService1_GetLeaguesChartData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetLeaguesChartDataResponse" message="tns:IService1_GetLeaguesChartData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeakPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetWeakPlayers" message="tns:IService1_GetWeakPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetWeakPlayersResponse" message="tns:IService1_GetWeakPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWinCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetWinCount" message="tns:IService1_GetWinCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetWinCountResponse" message="tns:IService1_GetWinCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLossCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetLossCount" message="tns:IService1_GetLossCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetLossCountResponse" message="tns:IService1_GetLossCount_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddGame">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintGamesList">
+      <soap:operation soapAction="http://tempuri.org/IService1/PrintGamesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintPlayersList">
+      <soap:operation soapAction="http://tempuri.org/IService1/PrintPlayersList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTrainer">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddTrainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrainer">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteTrainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectTrainer">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectTrainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrainer">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateTrainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintTrainersLinst">
+      <soap:operation soapAction="http://tempuri.org/IService1/PrintTrainersLinst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTraining">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTraining">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectTraining">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintTraningList">
+      <soap:operation soapAction="http://tempuri.org/IService1/PrintTraningList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLeague">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLeague">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectLeague">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintLeaguesList">
+      <soap:operation soapAction="http://tempuri.org/IService1/PrintLeaguesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLeague">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPlayer">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddPlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlayer">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeletePlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayer">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdatePlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPlayer">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectPlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGame">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGame">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectGame">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTraining">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="signUp">
+      <soap:operation soapAction="http://tempuri.org/IService1/signUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://tempuri.org/IService1/login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainersSalaryBySeniority">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTrainersSalaryBySeniority" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguesChartData">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetLeaguesChartData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeakPlayers">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetWeakPlayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWinCount">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetWinCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLossCount">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetLossCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/omerWCF/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/omerWCF.App_Code" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/omerWCF.App_Code" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="GamesClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GameNUmver" type="xs:int" />
+      <xs:element minOccurs="0" name="Game_level" type="xs:int" />
+      <xs:element minOccurs="0" name="PlayersPlayed" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PointsInTheGame" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShootNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Victory1" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GamesClass" nillable="true" type="tns:GamesClass" />
+  <xs:complexType name="ArrayOfGamesClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GamesClass" nillable="true" type="tns:GamesClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGamesClass" nillable="true" type="tns:ArrayOfGamesClass" />
+  <xs:complexType name="ArrayOfPlayrsClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlayrsClass" nillable="true" type="tns:PlayrsClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayrsClass" nillable="true" type="tns:ArrayOfPlayrsClass" />
+  <xs:complexType name="PlayrsClass">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:HumanSource">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AST1" type="xs:int" />
+          <xs:element minOccurs="0" name="BLK1" type="xs:int" />
+          <xs:element minOccurs="0" name="GP1" type="xs:int" />
+          <xs:element minOccurs="0" name="LastName1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Level1" type="xs:int" />
+          <xs:element minOccurs="0" name="PlayedINLeagues1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PlayerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PlayerNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="STL1" type="xs:int" />
+          <xs:element minOccurs="0" name="TO1" type="xs:int" />
+          <xs:element minOccurs="0" name="TrainerID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WorkoutDays" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fGM" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PlayrsClass" nillable="true" type="tns:PlayrsClass" />
+  <xs:complexType name="HumanSource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Level" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HumanSource" nillable="true" type="tns:HumanSource" />
+  <xs:complexType name="TrainersClass">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:HumanSource">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Fname1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Level1" type="xs:int" />
+          <xs:element minOccurs="0" name="Lname1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartWorking" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrainersClass" nillable="true" type="tns:TrainersClass" />
+  <xs:complexType name="ArrayOfTrainersClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrainersClass" nillable="true" type="tns:TrainersClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrainersClass" nillable="true" type="tns:ArrayOfTrainersClass" />
+  <xs:complexType name="TrainingClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TrainerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrainingHouer1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrainingLevel1" type="xs:int" />
+      <xs:element minOccurs="0" name="TrainingType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkoutDay" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrainingClass" nillable="true" type="tns:TrainingClass" />
+  <xs:complexType name="ArrayOfTrainingClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrainingClass" nillable="true" type="tns:TrainingClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrainingClass" nillable="true" type="tns:ArrayOfTrainingClass" />
+  <xs:complexType name="LeaguesClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BastPlayerAtTheLeague1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoachName1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LeagueLevel1" type="xs:int" />
+      <xs:element minOccurs="0" name="LeagueName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PTSatLeague1" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LeaguesClass" nillable="true" type="tns:LeaguesClass" />
+  <xs:complexType name="ArrayOfLeaguesClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LeaguesClass" nillable="true" type="tns:LeaguesClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLeaguesClass" nillable="true" type="tns:ArrayOfLeaguesClass" />
+  <xs:complexType name="LoginClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Birthday" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Role" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginClass" nillable="true" type="tns:LoginClass" />
+</xs:schema>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="omerWCF.App_Code.Connection" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAIBRACAYAAAAAAACAAAAgAAAA=</HashCode>
+      <FileName>App_Code\Conecttion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.App_Code.GamesClass">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAKAACAAAAAAQAAAAEAAAAAAAQQIAgAMCAIAIAAAAA=</HashCode>
+      <FileName>App_Code\GamesClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.App_Code.HumanSource" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAABAAAQAAAAEAABAAAEAAAABAAAADACAAAg=</HashCode>
+      <FileName>App_Code\HumanSourceClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.App_Code.LeaguesClass">
+    <Position X="10.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACIAACCAAAAAAIgCQCAAAAABAIAAAAAAIAAAAAAgAA=</HashCode>
+      <FileName>App_Code\LeaguesClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.App_Code.LoginClass">
+    <Position X="13" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAEQAAABkAAAAIAAACAAAAAgAAEAA=</HashCode>
+      <FileName>App_Code\LoginClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.App_Code.PlayrsClass" Collapsed="true">
+    <Position X="1.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEEIAAwAAAMAABEGBAABAAIAAAACBABAAAAAgEgJAg=</HashCode>
+      <FileName>App_Code\PlayrsClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.App_Code.TrainersClass" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACgAAEAAAAgAAAACAAAAAAAAAAAABBAAIAAAAAEJA=</HashCode>
+      <FileName>App_Code\TrainersClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.App_Code.TrainingClass">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgEAAAIAACQAAAUgAAARIAAAAIEAAAAAAAAAAABCAA=</HashCode>
+      <FileName>App_Code\TrainingClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="omerWCF.Service1" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAKAAAIAAAQgABACKEAQAAABAYAABAAIIoAAhEBkBA=</HashCode>
+      <FileName>Service1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="omerWCF.IService1" Collapsed="true">
+    <Position X="13" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAKAAAIAAAQgABACKEAQAAABAYAABAAIIoAAhEBkBA=</HashCode>
+      <FileName>IService1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
